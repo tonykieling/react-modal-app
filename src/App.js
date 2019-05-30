@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ReactModal from 'react-modal'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      showModal: false
+    }
+  }
+
+  handleOpenModal = () => {
+    this.setState({
+      showModal: true
+    })
+  }
+
+  handleCloseModal = () => {
+    this.setState({
+      showModal: false
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <br /><br /><br /><br />
+        react-modal-app
+        <br /><br />
+        <button onClick={this.handleOpenModal}>Open Modal</button>
+        <ReactModal
+          isOpen={this.state.showModal}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <button onClick={this.handleCloseModal}>Close Modal</button>
+        </ReactModal>
+      </div>
+    );
+  }
 }
 
 export default App;

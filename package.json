@@ -1,18 +1,11 @@
 {
-<<<<<<< HEAD
   "name": "react-modal-app",
-=======
-  "name": "react-modal",
->>>>>>> 2ec7c18944e1bd9d8728c4db53f3b92c61314a28
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-<<<<<<< HEAD
     "react-modal": "^3.8.1",
-=======
->>>>>>> 2ec7c18944e1bd9d8728c4db53f3b92c61314a28
     "react-scripts": "3.0.1"
   },
   "scripts": {
