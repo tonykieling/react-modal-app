@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
 import ReactModal from 'react-modal'
-import {Button, Form, Alert} from 'react-bootstrap'
+import {Button, Form} from 'react-bootstrap'
+
+ReactModal.setAppElement('#root');
 
 const user = {
   name: "bob",
@@ -65,12 +67,8 @@ class App extends React.Component {
         name: "",
         password: ""
       })
-      return <div>
-        <Alert color="warning">
-          name/password are incorrect
-        </Alert>
-      </div>
-      // return false
+      alert("name/password are incorrect")
+      return false
     }
   }
 
@@ -92,6 +90,7 @@ class App extends React.Component {
       <ReactModal
         isOpen = {this.state.showModal}
         style = {customStyles}
+        // contentLabel = {"react model test"}
       >
         <h1>Modal</h1>
           <Form onSubmit={this.handleSubmit}>
