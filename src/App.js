@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import ReactModal from 'react-modal'
-import {Button, Form} from 'react-bootstrap'
+import {Button, Form, Alert} from 'react-bootstrap'
 
 const user = {
   name: "bob",
@@ -52,25 +52,31 @@ class App extends React.Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     console.log("handlesubmit")
     if (this.state.name === user.name && this.state.password === user.password){
       this.setState({
         showModal: false
       })
       return true
+    } else {
+      // alert("name/password are incorrect")
+      this.setState({
+        name: "",
+        password: ""
+      })
+      return <div>
+        <Alert color="warning">
+          name/password are incorrect
+        </Alert>
+      </div>
+      // return false
     }
-    alert("name/password are incorrect")
-    this.setState({
-      name: "",
-      password: ""
-    })
-    return false
   }
 
   customStyles = {
     content: {
-      left: eval("50%" - 100),
+      left: "50%",
       width: 200
     }
   }
