@@ -1,67 +1,51 @@
-import React from 'react';
-import './App.css';
-import ReactModal from 'react-modal'
-import { Button, Form } from 'react-bootstrap'
+import React, { Component } from 'react'
+import {Button, Form} from 'react-bootstrap'
 
-const customStyles = {
-  content : {
-    // width: "100%",
-    // height: "100%",
-    // left: "0",
-    // top: "0"
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
 
-class App extends React.Component {
-  constructor() {
-    super()
+export default class App extends Component {
+  constructor(props){
+    super(props);
     this.state = {
-      showModal: false
+      email: "",
+      password: ""
     }
   }
 
-  handleOpenModal = () => {
+  handleChange = e => {
     this.setState({
-      showModal: true
-    })
+      [e.target.name]: e.target.value
+    });
   }
 
-  handleCloseModal = () => {
-    this.setState({
-      showModal: false
-    })
-  }
 
-  customStyles = {
-    content: {
-      left: eval("50%" - 100),
-      width: 200
+  handleSubmit = e => {
+    e.preventDefault();
+    // const user = checkUser({email: this.state.email, password: this.state.password})
+    const user = true
+    if (!user) {
+      alert("Email/Password is wrong!");
+      this.setState({
+        email: "",
+        password: ""
+      })
+      return;
+    } else {
+      // store.dispatch({type: "LOGIN", data: { user }})
+      console.log("login is valid!")
     }
+  }
+
+  isValid = () => {
+    if (this.state.email === "" || this.state.password === "")
+      return false;
+    return true;
   }
 
   render() {
     return (
-      <div className="App">
-        <br /><br /><br /><br />
-        react-modal-app
-        <br /><br />
-        <button onClick={this.handleOpenModal}>Open Modal</button>
-        <ReactModal
-          isOpen={this.state.showModal}
-          // closeTimeoutMS={500}
-          shouldCloseOnEsc={true}
-          contentLabel="Minimal Modal Example"
-          style={customStyles}
-        >
-          <h1>Modal title</h1>
-          <p>modal p example</p>
-          <Form onSubmit={this.handleSubmit}>
+      <div className="moldura">
+        <h1>Login Page</h1>      
+            <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>User / Email address</Form.Label>
                     <Form.Control
@@ -92,11 +76,8 @@ class App extends React.Component {
                 </Button>
 
             </Form>
-            {/* <button onClick={this.handleCloseModal}>Close Modal</button> */}
-        </ReactModal>
+
       </div>
-    );
+    )
   }
 }
-
-export default App;
