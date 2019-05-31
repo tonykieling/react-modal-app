@@ -27,7 +27,9 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showModal: false
+      showModal: false,
+      name: "",
+      password: ""
     }
   }
 
@@ -43,9 +45,27 @@ class App extends React.Component {
     })
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     console.log("handlesubmit")
+    if (this.state.name === user.name && this.state.password === user.password){
+      this.setState({
+        showModal: false
+      })
+      return true
+    }
+    alert("name/password are incorrect")
+    this.setState({
+      name: "",
+      password: ""
+    })
+    return false
   }
 
   customStyles = {
@@ -72,11 +92,11 @@ class App extends React.Component {
               <Form.Group controlId="formBasicEmail">
                   <Form.Label>User / Email address</Form.Label>
                   <Form.Control
-                      type="email"
-                      placeholder="Type the user's email"
-                      name="email"
+                      type="name"
+                      placeholder="Type the user's name"
+                      name="name"
                       onChange={this.handleChange}
-                      value={this.state.email}
+                      value={this.state.name}
                   />
                   <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
