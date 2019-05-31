@@ -3,6 +3,11 @@ import './App.css';
 import ReactModal from 'react-modal'
 import {Button, Form} from 'react-bootstrap'
 
+const user = {
+  name: "bob",
+  password: "bob"
+}
+
 const customStyles = {
   content : {
     // width: "100%",
@@ -38,7 +43,8 @@ class App extends React.Component {
     })
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
     console.log("handlesubmit")
   }
 
@@ -62,12 +68,7 @@ class App extends React.Component {
         style = {customStyles}
       >
         <h1>Modal</h1>
-        <Button onClick={this.handleCloseModal}>
-          Close Modal
-        </Button>
-      </ReactModal>
-      
-          {/* <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                   <Form.Label>User / Email address</Form.Label>
                   <Form.Control
@@ -96,10 +97,12 @@ class App extends React.Component {
               <Button variant="primary" type="submit">
                 Submit
               </Button>
-
-          </Form> */}
+              <Button variant="danger" onClick={this.handleCloseModal}>
+                Close Modal
+              </Button>
+          </Form>
+      </ReactModal>
     </div>
-
     );
   }
 }
